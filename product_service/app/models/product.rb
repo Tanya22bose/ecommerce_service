@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
-    has_many_attached :images
+    has_many_attached :images, dependent: :destroy
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
     validates :description, length: {minimum: 10}
     validates :price, presence: true
     validate :image_type, if: :image_attached?

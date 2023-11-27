@@ -1,12 +1,25 @@
 require 'rails_helper'
 
+RSpec.shared_examples 'error while creating product' do |error_message, extra_params|
+  let(:valid_attributes) { attributes_for(:product) }
+  let(:valid_file_path) { Rails.root.join("spec", "fixtures", "files", "image.png") }
+  let(:valid_token) { JWTHelper.generate_jwt_token({user_id: 1}) }
+  let(:valid_headers) { { "Authorization": "Bearer #{valid_token}" }}
+
+  
+  it "when #{error_message}" do
+  post "/products", params: extra_params ? valid_attributes&.merge(extra_params) : valid_attributes, headers: valid_headers
+  expect(response).to have_http_status(:unprocessable_entity)
+    expect(json_response['error']).to include(error_message)
+  end
+end
+
 RSpec.describe "Products", type: :request do
   describe "GET /products" do
     before { create_list(:product, 5) }
 
     it "should get all products" do
       get "/products"
-      debugger
       expect(response).to have_http_status(:ok)
       expect(json_response.count).to eq(5)
     end
@@ -21,48 +34,26 @@ RSpec.describe "Products", type: :request do
     let(:valid_headers) { { "Authorization": "Bearer #{valid_token}" }}
 
     context "with valid attributes" do
-
       it "should create a product" do
-        post "/products", params: valid_attributes, headers: valid_headers
-        expect(response).to have_http_status(:created)
-        expect(json_response["name"]).to eq(valid_attributes[:name])
-        expect(json_response["description"]).to eq(valid_attributes[:description])
-        expect(json_response["price"]).to eq(valid_attributes[:price])
-      end
-      
-      it "should create a product with image" do
         post "/products", params: valid_attributes.merge(images: [fixture_file_upload(valid_file_path, "image/png")]), headers: valid_headers
         expect(response).to have_http_status(:created)
-        expect(json_response).to include("image_urls")
-      end 
+        expect(json_response).to include("image_urls", "name", "description", "price")
+        expect(request.headers["Authorization"]).to include("Bearer")
+      end
     end
     
     context "with invalid attributes" do
+      it_behaves_like 'error while creating product', "Name can't be blank", name: nil
+      it_behaves_like 'error while creating product', "Price can't be blank", price: nil
+      it_behaves_like 'error while creating product', "Description is too short (minimum is 10 characters)", description: "test desc"
+    end
 
-      it "should return error for missing product name" do
-        post "/products", params: valid_attributes.merge(name: ""), headers: valid_headers
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response["error"]).to include("Name can't be blank")
-      end
-      
-      it "should return error for wrong product image type" do
+     it "should return error for wrong product image type" do
         post "/products", params: valid_attributes.merge(images: [fixture_file_upload(invalid_file_path, "application/pdf")]), headers: valid_headers
         expect(response).to have_http_status(:unprocessable_entity)
         expect(json_response["error"]).to include("Images Must be a JPEG, PNG or GIF")
       end 
       
-      it "should return error for missing product price" do
-        post "/products", params: valid_attributes.merge(price: nil), headers: valid_headers
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response["error"]).to include("Price can't be blank")
-      end
-      
-      it "should return error for short product description" do
-        post "/products", params: valid_attributes.merge(description: "test desc"), headers: valid_headers
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response["error"]).to include("Description is too short (minimum is 10 characters)")
-      end 
-    end
   end
 
   describe "GET /products/id" do

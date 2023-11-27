@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
 
   def create
       @product = Product.new(product_params)
-      attach_images if product_params[:images]
 
       if @product.save
           render json: @product, status: :created
@@ -28,8 +27,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-      attach_images if product_params[:images]
-      
       if @product.update(product_params)
           render json: @product, status: :created
       else
@@ -51,12 +48,6 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
       rescue ActiveRecord::RecordNotFound
           render json: {error: "Product not found"}, status: :not_found
-  end
-
-  def attach_images
-      product_params[:images].each do |image|
-          @product.images.attach(image)
-      end
   end
 
   def product_params
