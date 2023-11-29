@@ -1,0 +1,2250 @@
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-11-27 11:16:23.072097', '2023-11-27 11:16:23.072100') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateOrders (20231127101705)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "orders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "status" varchar, "total_price" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231127101705') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateLineItems (20231127102552)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "line_items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "order_id" integer NOT NULL, "product_id" integer, "quantity" integer, "price" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_2dc2e5c22c"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_line_items_on_order_id" ON "line_items" ("order_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231127102552') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/orders/create" for ::1 at 2023-11-27 17:03:56 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/orders/create"):
+  
+Started POST "/orders" for ::1 at 2023-11-27 17:21:38 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"status "=>"cart", "total_price"=>"20"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 252)
+
+
+  
+NameError (uninitialized constant ApplicationController::JWT):
+  
+app/controllers/application_controller.rb:15:in `rescue in authenticate_user'
+app/controllers/application_controller.rb:12:in `authenticate_user'
+Started POST "/orders" for ::1 at 2023-11-27 17:22:27 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"status "=>"cart", "total_price"=>"20"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 166)
+
+
+  
+NameError (uninitialized constant ApplicationController::JWT):
+  
+app/controllers/application_controller.rb:15:in `rescue in authenticate_user'
+app/controllers/application_controller.rb:12:in `authenticate_user'
+Started POST "/orders" for ::1 at 2023-11-27 17:22:54 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"status "=>"cart", "total_price"=>"20"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 166)
+
+
+  
+NameError (uninitialized constant ApplicationController::JWT):
+  
+app/controllers/application_controller.rb:15:in `rescue in authenticate_user'
+app/controllers/application_controller.rb:12:in `authenticate_user'
+Started POST "/orders" for ::1 at 2023-11-27 17:24:20 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"status "=>"cart", "total_price"=>"20"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 166)
+
+
+  
+NameError (uninitialized constant ApplicationController::JWT):
+  
+app/controllers/application_controller.rb:15:in `rescue in authenticate_user'
+app/controllers/application_controller.rb:12:in `authenticate_user'
+Started POST "/orders" for ::1 at 2023-11-27 17:25:46 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#create as */*
+  Parameters: {"status "=>"cart", "total_price"=>"20"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 404 Not Found in 93ms (ActiveRecord: 3.1ms | Allocations: 15951)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Order with 'id'={:user_id=>4, :status=>"cart"}):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-27 17:27:59 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 246)
+
+
+Started POST "/orders" for ::1 at 2023-11-27 17:28:35 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 404 Not Found in 12ms (ActiveRecord: 0.5ms | Allocations: 697)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Order with 'id'={:user_id=>4, :status=>"cart"}):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-27 17:29:41 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 404 Not Found in 10ms (ActiveRecord: 4.2ms | Allocations: 2275)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Order with 'id'={:user_id=>4, :status=>"cart"}):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-27 17:30:48 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 404 Not Found in 6ms (ActiveRecord: 2.3ms | Allocations: 2260)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Order with 'id'={:user_id=>4, :status=>"cart"}):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 10:26:10 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+  [1m[36mOrder Load (15.9ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 404 Not Found in 50ms (ActiveRecord: 24.8ms | Allocations: 1799)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Order with 'id'={:user_id=>4, :status=>"cart"}):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 10:28:55 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+  [1m[36mOrder Load (0.9ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 18.9ms | Allocations: 2137)
+
+
+  
+NameError (undefined local variable or method `order_params' for #<OrdersController:0x000000000171b0>):
+  
+app/controllers/orders_controller.rb:22:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 10:30:41 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 260ms (ActiveRecord: 9.7ms | Allocations: 11722)
+
+
+  
+NoMethodError (undefined method `order_items' for #<Order id: nil, user_id: 4, status: "cart", total_price: 20.0, created_at: nil, updated_at: nil>):
+  
+app/controllers/orders_controller.rb:23:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 10:32:26 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart"}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 10.0ms | Allocations: 4679)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: nil, user_id: 4, status: "cart", total_price: 20.0, created_at: nil, updated_at: nil>):
+  
+app/controllers/orders_controller.rb:23:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 10:44:24 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart", "product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (4.9ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+[31mUnpermitted parameters: :product_id, :quantity, :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a1d3c00>, params: {"total_price"=>"20", "status"=>"cart", "product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 6.8ms | Allocations: 4338)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: nil, user_id: 4, status: "cart", total_price: 20.0, created_at: nil, updated_at: nil>):
+  
+app/controllers/orders_controller.rb:23:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 10:46:14 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"total_price"=>"20", "status"=>"cart", "product_id"=>"1", "quantity"=>"1", "price "=>"50", "line_items"=>"[]"}
+  [1m[36mOrder Load (11.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+[31mUnpermitted parameters: :product_id, :quantity, :price , :line_items. Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d19e30>, params: {"total_price"=>"20", "status"=>"cart", "product_id"=>"1", "quantity"=>"1", "price "=>"50", "line_items"=>"[]", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 11.2ms | Allocations: 756)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: nil, user_id: 4, status: "cart", total_price: 20.0, created_at: nil, updated_at: nil>):
+  
+app/controllers/orders_controller.rb:23:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:12:53 +0530
+  
+NoMethodError (undefined method `after_save' for OrdersController:Class):
+  
+app/controllers/orders_controller.rb:3:in `<class:OrdersController>'
+app/controllers/orders_controller.rb:1:in `<main>'
+Started POST "/orders" for ::1 at 2023-11-28 11:14:11 +0530
+  
+NoMethodError (undefined method `after_save' for OrdersController:Class):
+  
+app/controllers/orders_controller.rb:3:in `<class:OrdersController>'
+app/controllers/orders_controller.rb:1:in `<main>'
+Started POST "/orders" for ::1 at 2023-11-28 11:15:17 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (13.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 19.6ms | Allocations: 1831)
+
+
+  
+NoMethodError (undefined method `nil' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:20:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:16:07 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 5.2ms | Allocations: 2037)
+
+
+  
+NoMethodError (undefined method `nil' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:20:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:17:39 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mOrder Create (5.2ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "status", "total_price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["status", "cart"], ["total_price", 0.0], ["created_at", "2023-11-28 05:47:40.027950"], ["updated_at", "2023-11-28 05:47:40.027950"]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 8.7ms | Allocations: 6642)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:27:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:18:42 +0530
+  
+SyntaxError (/Users/tanya/Work/ecommerce_service/order_service/app/controllers/orders_controller.rb:49: syntax error, unexpected `end'):
+  
+app/controllers/orders_controller.rb:49: syntax error, unexpected `end'
+Started POST "/orders" for ::1 at 2023-11-28 11:18:50 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 685)
+
+
+  
+NoMethodError (undefined method `find_or_intialize_by' for Order:Class):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:23:40 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 681)
+
+
+  
+NoMethodError (undefined method `find_or_intialize_by' for Order:Class):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:23:53 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 681)
+
+
+  
+NoMethodError (undefined method `find_or_intialize_by' for Order:Class):
+  
+app/controllers/orders_controller.rb:18:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:24:38 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+  [1m[36mLineItem Load (0.4ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+Completed 404 Not Found in 33ms (ActiveRecord: 4.9ms | Allocations: 7257)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find LineItem with 'id'=1):
+  
+app/controllers/orders_controller.rb:19:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:25:07 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+Completed 404 Not Found in 16ms (ActiveRecord: 6.3ms | Allocations: 6464)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find LineItem with 'id'={:order_id=>1}):
+  
+app/controllers/orders_controller.rb:19:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:25:41 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 2.9ms | Allocations: 6363)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:24:in `create'
+Started GET "/orders" for ::1 at 2023-11-28 11:26:20 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/orders"):
+  
+Started GET "/order/1" for ::1 at 2023-11-28 11:26:30 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/order/1"):
+  
+Started POST "/orders" for ::1 at 2023-11-28 11:26:46 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms | Allocations: 1114)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:24:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:27:56 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? LIMIT ?[0m  [["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 8.5ms | Allocations: 6371)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:24:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:28:37 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 2.6ms | Allocations: 4624)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:19:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:28:50 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 2.0ms | Allocations: 4682)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:19:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:29:41 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 2.6ms | Allocations: 4680)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:19:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:29:58 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 2.3ms | Allocations: 4682)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:19:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:31:18 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 2.1ms | Allocations: 4684)
+
+
+  
+NoMethodError (undefined method `line_items' for #<Order id: 1, user_id: 4, status: "cart", total_price: 0.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 05:47:40.027950000 +0000">):
+  
+app/controllers/orders_controller.rb:21:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:32:01 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:18:in `create'
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mLineItem Create (2.4ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:02:01.500818"], ["updated_at", "2023-11-28 06:02:01.500818"]]
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:36:in `create'
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 6.2ms | Allocations: 21966)
+
+
+  
+NameError (undefined local variable or method `params' for #<LineItem id: nil, order_id: 1, product_id: 1, quantity: 1, price: nil, created_at: "2023-11-28 06:02:01.500818000 +0000", updated_at: "2023-11-28 06:02:01.500818000 +0000">):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:36:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:32:46 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.2ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:02:47.260518"], ["updated_at", "2023-11-28 06:02:47.260518"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 4.1ms | Allocations: 12276)
+
+
+  
+NameError (undefined local variable or method `params' for #<LineItem id: nil, order_id: 1, product_id: 1, quantity: 1, price: nil, created_at: "2023-11-28 06:02:47.260518000 +0000", updated_at: "2023-11-28 06:02:47.260518000 +0000">):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:34:11 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.0ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:04:11.664805"], ["updated_at", "2023-11-28 06:04:11.664805"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 4.2ms | Allocations: 12296)
+
+
+  
+NameError (undefined local variable or method `params' for #<LineItem id: nil, order_id: 1, product_id: 1, quantity: 1, price: nil, created_at: "2023-11-28 06:04:11.664805000 +0000", updated_at: "2023-11-28 06:04:11.664805000 +0000">):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:34:38 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (2.8ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:04:38.773609"], ["updated_at", "2023-11-28 06:04:38.773609"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 6.5ms | Allocations: 12297)
+
+
+  
+NameError (undefined local variable or method `params' for #<LineItem id: nil, order_id: 1, product_id: 1, quantity: 1, price: nil, created_at: "2023-11-28 06:04:38.773609000 +0000", updated_at: "2023-11-28 06:04:38.773609000 +0000">):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:34:55 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4de440>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4de440>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4de440>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4de440>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.0ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:04:55.341747"], ["updated_at", "2023-11-28 06:04:55.341747"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 3.5ms | Allocations: 12774)
+
+
+  
+NameError (undefined local variable or method `params' for #<LineItem id: nil, order_id: 1, product_id: 1, quantity: 1, price: nil, created_at: "2023-11-28 06:04:55.341747000 +0000", updated_at: "2023-11-28 06:04:55.341747000 +0000">):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:35:27 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d71ae0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d71ae0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d71ae0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d71ae0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.9ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:05:28.100189"], ["updated_at", "2023-11-28 06:05:28.100189"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 5.0ms | Allocations: 12754)
+
+
+  
+NameError (undefined local variable or method `params' for #<LineItem id: nil, order_id: 1, product_id: 1, quantity: 1, price: nil, created_at: "2023-11-28 06:05:28.100189000 +0000", updated_at: "2023-11-28 06:05:28.100189000 +0000">):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:35:41 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a439da0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a439da0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a439da0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a439da0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.6ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:05:41.380780"], ["updated_at", "2023-11-28 06:05:41.380780"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 4.4ms | Allocations: 12753)
+
+
+  
+NameError (undefined local variable or method `params' for #<LineItem id: nil, order_id: 1, product_id: 1, quantity: 1, price: nil, created_at: "2023-11-28 06:05:41.380780000 +0000", updated_at: "2023-11-28 06:05:41.380780000 +0000">):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:36:46 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a31dd40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a31dd40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a31dd40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a31dd40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.5ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:06:47.150751"], ["updated_at", "2023-11-28 06:06:47.150751"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 4.4ms | Allocations: 12735)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:36:53 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a2f8220>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a2f8220>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a2f8220>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a2f8220>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.2ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:06:53.290828"], ["updated_at", "2023-11-28 06:06:53.290828"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 3.7ms | Allocations: 12736)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:37:05 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4f92e0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4f92e0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4f92e0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4f92e0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.1ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:07:05.578149"], ["updated_at", "2023-11-28 06:07:05.578149"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 3.8ms | Allocations: 12734)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:34:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:37:31 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d3a018>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d3a018>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d3a018>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d3a018>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (1.2ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:07:31.992646"], ["updated_at", "2023-11-28 06:07:31.992646"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+Completed 201 Created in 24ms (Views: 1.3ms | ActiveRecord: 4.0ms | Allocations: 12628)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 11:40:00 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4db6a0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4db6a0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4db6a0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/line_item.rb:7:in `calculate_total_price'
+  [1m[36mLineItem Load (0.6ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/line_item.rb:7:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 3.8ms | Allocations: 11753)
+
+
+  
+TypeError (nil can't be coerced into Float):
+  
+app/models/line_item.rb:8:in `+'
+app/models/line_item.rb:8:in `block in calculate_total_price'
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:22:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:43:56 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a43df40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a43df40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a43df40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/line_item.rb:7:in `calculate_total_price'
+  [1m[36mLineItem Load (0.8ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/line_item.rb:7:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 3.5ms | Allocations: 11760)
+
+
+  
+NoMethodError (undefined method `*' for nil:NilClass):
+  
+app/models/line_item.rb:8:in `block in calculate_total_price'
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:22:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:44:05 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a43c280>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a43c280>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a43c280>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/line_item.rb:7:in `calculate_total_price'
+  [1m[36mLineItem Load (0.8ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/line_item.rb:7:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 5.9ms | Allocations: 11759)
+
+
+  
+NoMethodError (undefined method `*' for nil:NilClass):
+  
+app/models/line_item.rb:8:in `block in calculate_total_price'
+app/models/line_item.rb:7:in `calculate_total_price'
+app/controllers/orders_controller.rb:22:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:46:07 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4d7b40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4d7b40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a4d7b40>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mLineItem Load (1.4ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 5.9ms | Allocations: 11830)
+
+
+  
+NoMethodError (undefined method `*' for nil:NilClass):
+  
+app/models/order.rb:5:in `block in calculate_total_price'
+app/models/order.rb:5:in `calculate_total_price'
+app/models/line_item.rb:7:in `update_order_total_price'
+app/controllers/orders_controller.rb:22:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:46:22 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109f39ee0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109f39ee0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109f39ee0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mLineItem Load (2.5ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 2.8ms | Allocations: 3039)
+
+
+  
+NoMethodError (undefined method `*' for nil:NilClass):
+  
+app/models/order.rb:5:in `block in calculate_total_price'
+app/models/order.rb:5:in `calculate_total_price'
+app/models/line_item.rb:7:in `update_order_total_price'
+app/controllers/orders_controller.rb:22:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 11:46:33 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8330c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8330c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8330c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 18ms (Views: 0.5ms | ActiveRecord: 2.7ms | Allocations: 10566)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 11:48:26 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109bd08d0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109bd08d0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109bd08d0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 26ms (Views: 0.6ms | ActiveRecord: 3.2ms | Allocations: 10473)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 11:48:59 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/orders"):
+  
+Started GET "/orders" for ::1 at 2023-11-28 11:49:36 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/orders"):
+  
+Started GET "/orders/show" for ::1 at 2023-11-28 11:49:52 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 18ms (Views: 7.5ms | ActiveRecord: 4.8ms | Allocations: 4899)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 11:50:03 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mLineItem Load (0.7ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 11ms (Views: 5.0ms | ActiveRecord: 3.2ms | Allocations: 5161)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 11:50:48 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 629)
+
+
+Started POST "/orders/create" for ::1 at 2023-11-28 11:50:56 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/orders/create"):
+  
+Started POST "/orders" for ::1 at 2023-11-28 11:51:31 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109c917d8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109c917d8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109c917d8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 32ms (Views: 2.2ms | ActiveRecord: 0.7ms | Allocations: 6818)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 11:51:58 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 628)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 11:52:08 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a434620>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a434620>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a434620>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 7ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1899)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 11:52:35 +0530
+Processing by OrdersController#show as */*
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 628)
+
+
+Started POST "/orders/create" for ::1 at 2023-11-28 11:53:39 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/orders/create"):
+  
+Started POST "/orders" for ::1 at 2023-11-28 11:53:44 +0530
+Processing by OrdersController#create as */*
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 403 Forbidden in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 159)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 11:53:57 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d30a18>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.6ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d30a18>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d30a18>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x0000000109d30a18>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 32ms (Views: 0.3ms | ActiveRecord: 7.2ms | Allocations: 10515)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 12:09:09 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mLineItem Load (5.4ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 27ms (Views: 16.3ms | ActiveRecord: 6.9ms | Allocations: 970)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 12:10:28 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8312c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.4ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8312c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8312c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8312c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameters: :product_id, :quantity, :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8312c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010a8312c8>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Started POST "/orders" for ::1 at 2023-11-28 12:13:47 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010d88c3a0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010d88c3a0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010d88c3a0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010d88c3a0>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 49402ms (Views: 0.5ms | ActiveRecord: 11.7ms | Allocations: 206103)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 12:14:53 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms | Allocations: 746)
+
+
+  [1m[36mLineItem Delete All (2.5ms)[0m  [1m[31mDELETE FROM "line_items"[0m
+Started GET "/orders/show" for ::1 at 2023-11-28 12:16:00 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 571)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 12:16:11 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dd4ad38>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.4ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dd4ad38>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dd4ad38>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dd4ad38>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mLineItem Create (3.6ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 1], ["price", nil], ["created_at", "2023-11-28 06:46:11.236966"], ["updated_at", "2023-11-28 06:46:11.236966"]]
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:34:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dd4ad38>, params: {"product_id"=>"1", "quantity"=>"1", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 47734ms (Views: 1.0ms | ActiveRecord: 5.0ms | Allocations: 125671)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 12:17:08 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"1", "price "=>"50"}
+  [1m[36mLineItem Load (0.5ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 12ms (Views: 4.6ms | ActiveRecord: 2.4ms | Allocations: 5270)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 12:19:29 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"2", "price "=>"50"}
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 629)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 12:19:36 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"2", "price "=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dc2cfa0>, params: {"product_id"=>"1", "quantity"=>"2", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dc2cfa0>, params: {"product_id"=>"1", "quantity"=>"2", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dc2cfa0>, params: {"product_id"=>"1", "quantity"=>"2", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mLineItem Update (1.6ms)[0m  [1m[33mUPDATE "line_items" SET "quantity" = ?, "updated_at" = ? WHERE "line_items"."id" = ?[0m  [["quantity", 2], ["updated_at", "2023-11-28 06:49:36.052398"], ["id", 2]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dc2cfa0>, params: {"product_id"=>"1", "quantity"=>"2", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :price . Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dc2cfa0>, params: {"product_id"=>"1", "quantity"=>"2", "price "=>"50", "controller"=>"orders", "action"=>"create"} }[0m
+Completed 201 Created in 132957ms (Views: 0.3ms | ActiveRecord: 2.4ms | Allocations: 167794)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 12:21:54 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"2", "price"=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mLineItem Update (0.8ms)[0m  [1m[33mUPDATE "line_items" SET "price" = ?, "updated_at" = ? WHERE "line_items"."id" = ?[0m  [["price", 50.0], ["updated_at", "2023-11-28 06:51:54.323313"], ["id", 2]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 201 Created in 20013ms (Views: 0.3ms | ActiveRecord: 1.6ms | Allocations: 131400)
+
+
+Started GET "/orders/show" for ::1 at 2023-11-28 12:22:29 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"2", "price"=>"50"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 630)
+
+
+  [1m[36mOrder Delete All (0.5ms)[0m  [1m[31mDELETE FROM "orders"[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mOrder Delete All (0.3ms)[0m  [1m[31mDELETE FROM "orders"[0m
+  [1m[36mOrder Delete All (0.2ms)[0m  [1m[31mDELETE FROM "orders"[0m
+  [1m[36mOrder Delete All (0.3ms)[0m  [1m[31mDELETE FROM "orders"[0m
+Started POST "/orders" for ::1 at 2023-11-28 12:26:37 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:16:in `create'
+  [1m[36mLineItem Load (0.5ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mLineItem Update (0.8ms)[0m  [1m[33mUPDATE "line_items" SET "quantity" = ?, "updated_at" = ? WHERE "line_items"."id" = ?[0m  [["quantity", 3], ["updated_at", "2023-11-28 06:56:37.874183"], ["id", 2]]
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 150.0], ["updated_at", "2023-11-28 06:56:37.877559"], ["id", 1]]
+  ↳ app/models/order.rb:6:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:22:in `create'
+Completed 201 Created in 7805ms (Views: 0.4ms | ActiveRecord: 8.7ms | Allocations: 181999)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 12:29:43 +0530
+Processing by OrdersController#index as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50"}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:6:in `index'
+Completed 200 OK in 23ms (Views: 11.2ms | ActiveRecord: 4.1ms | Allocations: 4937)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:30:04 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:13:in `show'
+Completed 200 OK in 11ms (Views: 7.7ms | ActiveRecord: 0.6ms | Allocations: 4546)
+
+
+Started GET "/orders/2" for ::1 at 2023-11-28 12:30:23 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"2"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:13:in `show'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 630)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 12:30:28 +0530
+Processing by OrdersController#index as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 644)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:30:32 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:13:in `show'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 629)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:31:10 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 1019)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:10:in `show'
+Started GET "/orders/1" for ::1 at 2023-11-28 12:31:34 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 956)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:10:in `show'
+Started GET "/orders/1" for ::1 at 2023-11-28 12:31:54 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+Completed 404 Not Found in 8ms (ActiveRecord: 3.5ms | Allocations: 2651)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find LineItem with 'id'={:order_id=>nil}):
+  
+app/controllers/orders_controller.rb:10:in `show'
+Started GET "/orders/1" for ::1 at 2023-11-28 12:32:01 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+Completed 404 Not Found in 5ms (ActiveRecord: 1.4ms | Allocations: 2608)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find LineItem with 'id'={:order_id=>"1"}):
+  
+app/controllers/orders_controller.rb:10:in `show'
+Started GET "/orders/1" for ::1 at 2023-11-28 12:32:26 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:13:in `show'
+Completed 200 OK in 11ms (Views: 5.7ms | ActiveRecord: 1.6ms | Allocations: 5250)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:32:43 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items"[0m
+  ↳ app/controllers/orders_controller.rb:13:in `show'
+Completed 200 OK in 14ms (Views: 1.8ms | ActiveRecord: 2.9ms | Allocations: 5754)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:32:49 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 5153)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:33:29 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 2.4ms | Allocations: 5157)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 12:35:24 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50"}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:24:in `create'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 4.0ms | Allocations: 9479)
+
+
+  
+TypeError (String can't be coerced into Integer):
+  
+app/controllers/orders_controller.rb:28:in `+'
+app/controllers/orders_controller.rb:28:in `create'
+Started POST "/orders" for ::1 at 2023-11-28 12:36:19 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50"}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:27:in `create'
+  [1m[36mLineItem Update (0.9ms)[0m  [1m[33mUPDATE "line_items" SET "quantity" = ?, "updated_at" = ? WHERE "line_items"."id" = ?[0m  [["quantity", 6], ["updated_at", "2023-11-28 07:06:19.941529"], ["id", 2]]
+  ↳ app/controllers/orders_controller.rb:27:in `create'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:7:in `update_order_total_price'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 300.0], ["updated_at", "2023-11-28 07:06:19.948941"], ["id", 1]]
+  ↳ app/models/order.rb:6:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:27:in `create'
+Completed 201 Created in 35ms (Views: 0.3ms | ActiveRecord: 5.7ms | Allocations: 13901)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:36:30 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"3", "price"=>"50", "id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 626)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 12:37:17 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"2", "quantity"=>"1", "price"=>"60"}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:21:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:39:in `create'
+  [1m[36mLineItem Create (2.0ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 2], ["quantity", 1], ["price", 60.0], ["created_at", "2023-11-28 07:07:17.986573"], ["updated_at", "2023-11-28 07:07:17.986573"]]
+  ↳ app/controllers/orders_controller.rb:39:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 360.0], ["updated_at", "2023-11-28 07:07:17.992438"], ["id", 1]]
+  ↳ app/models/order.rb:6:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:39:in `create'
+Completed 201 Created in 19ms (Views: 0.4ms | ActiveRecord: 3.2ms | Allocations: 4869)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:37:41 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 485)
+
+
+  [1m[36mLineItem Load (0.7ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mOrder Load (0.9ms)[0m  [1m[34mSELECT "orders".* FROM "orders" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/orders/1" for ::1 at 2023-11-28 12:40:44 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.6ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:10:in `show'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 3.2ms | Allocations: 5240)
+
+
+  
+NoMethodError (undefined method `all' for #<LineItem id: 2, order_id: 1, product_id: 1, quantity: 6, price: 50.0, created_at: "2023-11-28 06:46:11.236966000 +0000", updated_at: "2023-11-28 07:06:19.941529000 +0000">):
+  
+app/controllers/orders_controller.rb:10:in `show'
+Started GET "/orders/1" for ::1 at 2023-11-28 12:41:00 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:13:in `show'
+Completed 200 OK in 11ms (Views: 4.8ms | ActiveRecord: 1.8ms | Allocations: 5554)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 12:42:27 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:6:in `index'
+Completed 200 OK in 25ms (Views: 12.5ms | ActiveRecord: 3.1ms | Allocations: 4867)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 12:42:41 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:13:in `show'
+Completed 200 OK in 12ms (Views: 6.3ms | ActiveRecord: 0.6ms | Allocations: 4746)
+
+
+Started PUT "/orders/1" for ::1 at 2023-11-28 13:01:15 +0530
+Processing by OrdersController#update as */*
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 403 Forbidden in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 181)
+
+
+Started PUT "/orders/1" for ::1 at 2023-11-28 13:01:44 +0530
+Processing by OrdersController#update as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"5", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010eb775a0>, params: {"product_id"=>"1", "quantity"=>"5", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (2.8ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:46:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010eb775a0>, params: {"product_id"=>"1", "quantity"=>"5", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:47:in `update'
+  [1m[36mLineItem Update (0.8ms)[0m  [1m[33mUPDATE "line_items" SET "quantity" = ?, "updated_at" = ? WHERE "line_items"."id" = ?[0m  [["quantity", 5], ["updated_at", "2023-11-28 07:31:44.316399"], ["id", 2]]
+  ↳ app/controllers/orders_controller.rb:47:in `update'
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:7:in `update_order_total_price'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 310.0], ["updated_at", "2023-11-28 07:31:44.331876"], ["id", 1]]
+  ↳ app/models/order.rb:6:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:47:in `update'
+Completed 200 OK in 39ms (Views: 0.4ms | ActiveRecord: 5.3ms | Allocations: 12326)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 13:01:59 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:12:in `show'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 13:02:21 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 723)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 13:07:33 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"2", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010dedf658>, params: {"product_id"=>"2", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms | Allocations: 1240)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:57:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 13:08:22 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"2", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010eb3d530>, params: {"product_id"=>"2", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.7ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:57:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:58:in `destroy'
+  [1m[36mLineItem Destroy (12.1ms)[0m  [1m[31mDELETE FROM "line_items" WHERE "line_items"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/orders_controller.rb:58:in `destroy'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:8:in `update_order_total_price'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:5:in `calculate_total_price'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 250.0], ["updated_at", "2023-11-28 07:38:22.661325"], ["id", 1]]
+  ↳ app/models/order.rb:6:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:58:in `destroy'
+Completed 200 OK in 98ms (Views: 0.2ms | ActiveRecord: 16.8ms | Allocations: 12716)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 13:08:40 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"2", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec3e7e0>, params: {"product_id"=>"2", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:57:in `destroy'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms | Allocations: 679)
+
+
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:58:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 13:08:49 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"2", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010df17940>, params: {"product_id"=>"2", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.7ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:57:in `destroy'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 2.0ms | Allocations: 2603)
+
+
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:58:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 13:09:19 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"2", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ebf6558>, params: {"product_id"=>"2", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:57:in `destroy'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 2.7ms | Allocations: 2604)
+
+
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:58:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 13:09:30 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"2", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec31680>, params: {"product_id"=>"2", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:57:in `destroy'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 1.4ms | Allocations: 2604)
+
+
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:58:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 13:09:41 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"2", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec187c0>, params: {"product_id"=>"2", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:57:in `destroy'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 2.2ms | Allocations: 2604)
+
+
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:58:in `destroy'
+Started GET "/orders" for ::1 at 2023-11-28 15:03:20 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (9.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 54ms (Views: 24.3ms | ActiveRecord: 16.7ms | Allocations: 5203)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:03:37 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (1.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 19ms (Views: 11.6ms | ActiveRecord: 1.2ms | Allocations: 4730)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:03:59 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1", "order"=>{}}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 709)
+
+
+Started GET "/orders/2" for ::1 at 2023-11-28 15:04:20 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2", "order"=>{}}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 2]]
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 637)
+
+
+Started GET "/orders/2" for ::1 at 2023-11-28 15:05:09 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2", "order"=>{}}
+  [1m[36mLineItem Load (0.5ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 2]]
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 10ms (Views: 1.0ms | ActiveRecord: 4.4ms | Allocations: 2268)
+
+
+Started GET "/orders/2" for ::1 at 2023-11-28 15:05:23 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2", "order"=>{}}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? /* loading for inspect */ LIMIT ?[0m  [["order_id", 2], ["LIMIT", 11]]
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 1.5ms | Allocations: 2567)
+
+
+  [1m[36mCACHE LineItem Load (0.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? /* loading for inspect */ LIMIT ?[0m  [["order_id", 2], ["LIMIT", 11]]
+  
+NoMethodError (undefined method `length?' for #<ActiveRecord::Relation []>):
+  
+app/controllers/orders_controller.rb:17:in `show'
+  [1m[36mCACHE LineItem Load (0.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? /* loading for inspect */ LIMIT ?[0m  [["order_id", 2], ["LIMIT", 11]]
+Started GET "/orders/2" for ::1 at 2023-11-28 15:05:49 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"2", "order"=>{}}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 2]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 404 Not Found in 6ms (Views: 0.1ms | ActiveRecord: 2.9ms | Allocations: 2138)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:07:10 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"order"=>{}}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+[31mUnpermitted parameter: :order. Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dfb6f40>, params: {"controller"=>"orders", "action"=>"create", "order"=>{}} }[0m
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" IS NULL AND "line_items"."order_id" = ? LIMIT ?[0m  [["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+[31mUnpermitted parameter: :order. Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dfb6f40>, params: {"controller"=>"orders", "action"=>"create", "order"=>{}} }[0m
+[31mUnpermitted parameter: :order. Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dfb6f40>, params: {"controller"=>"orders", "action"=>"create", "order"=>{}} }[0m
+[31mUnpermitted parameter: :order. Context: { controller: OrdersController, action: create, request: #<ActionDispatch::Request:0x000000010dfb6f40>, params: {"controller"=>"orders", "action"=>"create", "order"=>{}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (2.4ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 422 Unprocessable Entity in 117ms (Views: 0.5ms | ActiveRecord: 7.0ms | Allocations: 13897)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:08:27 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"", "quantity"=>"5", "price"=>"60"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", nil], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (1.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 422 Unprocessable Entity in 13ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 3708)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:08:54 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"0", "price"=>"60"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mLineItem Update (3.0ms)[0m  [1m[33mUPDATE "line_items" SET "price" = ?, "updated_at" = ? WHERE "line_items"."id" = ?[0m  [["price", 60.0], ["updated_at", "2023-11-28 09:38:54.603055"], ["id", 2]]
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:13:in `update_order_total_price'
+  [1m[36mLineItem Load (0.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:9:in `calculate_total_price'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 300.0], ["updated_at", "2023-11-28 09:38:54.615166"], ["id", 1]]
+  ↳ app/models/order.rb:10:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (0.8ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 201 Created in 23ms (Views: 0.3ms | ActiveRecord: 4.9ms | Allocations: 6733)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:09:08 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 650)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:09:45 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"0", "price"=>"0"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (0.9ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 201 Created in 7ms (Views: 0.3ms | ActiveRecord: 1.2ms | Allocations: 3192)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:09:58 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 580)
+
+
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mOrder Delete All (2.5ms)[0m  [1m[31mDELETE FROM "orders"[0m
+Started POST "/orders" for ::1 at 2023-11-28 15:11:06 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"2", "quantity"=>"0", "price"=>"0"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (1.6ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 422 Unprocessable Entity in 9ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 3566)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:11:19 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"2", "quantity"=>"0", "price"=>"10"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (0.7ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 422 Unprocessable Entity in 6ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 3558)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:12:23 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 577)
+
+
+Started PUT "/orders/1" for ::1 at 2023-11-28 15:12:56 +0530
+Processing by OrdersController#update as */*
+  Parameters: {"product_id"=>"2", "quantity"=>"0", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010df15dc0>, params: {"product_id"=>"2", "quantity"=>"0", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 2], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:53:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010df15dc0>, params: {"product_id"=>"2", "quantity"=>"0", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 819)
+
+
+  
+NoMethodError (undefined method `update' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:55:in `update'
+Started GET "/orders" for ::1 at 2023-11-28 15:13:27 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 4ms (Views: 4.0ms | ActiveRecord: 0.1ms | Allocations: 687)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:13:36 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 576)
+
+
+Started PUT "/orders/1" for ::1 at 2023-11-28 15:14:10 +0530
+Processing by OrdersController#update as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010e07f6e8>, params: {"product_id"=>"1", "quantity"=>"", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:53:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010e07f6e8>, params: {"product_id"=>"1", "quantity"=>"", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms | Allocations: 1012)
+
+
+  
+NoMethodError (undefined method `errors' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:60:in `update'
+Started PUT "/orders/1" for ::1 at 2023-11-28 15:14:49 +0530
+Processing by OrdersController#update as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010ec15660>, params: {"product_id"=>"1", "quantity"=>"", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.5ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:53:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010ec15660>, params: {"product_id"=>"1", "quantity"=>"", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+Completed 422 Unprocessable Entity in 14ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 6166)
+
+
+Started PUT "/orders/1" for ::1 at 2023-11-28 15:15:30 +0530
+Processing by OrdersController#update as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010eb3a790>, params: {"product_id"=>"1", "quantity"=>"10", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:53:in `update'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: update, request: #<ActionDispatch::Request:0x000000010eb3a790>, params: {"product_id"=>"1", "quantity"=>"10", "controller"=>"orders", "action"=>"update", "id"=>"1"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:55:in `update'
+  [1m[36mLineItem Update (0.7ms)[0m  [1m[33mUPDATE "line_items" SET "quantity" = ?, "updated_at" = ? WHERE "line_items"."id" = ?[0m  [["quantity", 10], ["updated_at", "2023-11-28 09:45:30.444131"], ["id", 2]]
+  ↳ app/controllers/orders_controller.rb:55:in `update'
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:13:in `update_order_total_price'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:9:in `calculate_total_price'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 600.0], ["updated_at", "2023-11-28 09:45:30.468055"], ["id", 1]]
+  ↳ app/models/order.rb:10:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:55:in `update'
+Completed 204 No Content in 28ms (Views: 0.1ms | ActiveRecord: 1.4ms | Allocations: 9482)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:15:42 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 675)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 15:15:52 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 743)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:15:57 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 580)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:16:24 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010e052760>, params: {"product_id"=>"1", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Destroy (0.6ms)[0m  [1m[31mDELETE FROM "line_items" WHERE "line_items"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mOrder Load (0.0ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:13:in `update_order_total_price'
+  [1m[36mLineItem Load (0.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:9:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.4ms | Allocations: 2997)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 2)):
+  
+app/controllers/orders_controller.rb:4:in `response_in_json'
+app/controllers/orders_controller.rb:67:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:17:16 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ebf4cf8>, params: {"product_id"=>"1", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.5ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 2.6ms | Allocations: 2839)
+
+
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:66:in `destroy'
+Started GET "/orders/1" for ::1 at 2023-11-28 15:17:27 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 404 Not Found in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 649)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 15:17:33 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 0.5ms | Allocations: 4525)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:19:19 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010e05f8c0>, params: {"product_id"=>"1", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 5.0ms | Allocations: 2840)
+
+
+  
+NoMethodError (undefined method `length' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:66:in `destroy'
+Started GET "/orders" for ::1 at 2023-11-28 15:19:27 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 11ms (Views: 7.1ms | ActiveRecord: 0.6ms | Allocations: 4559)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 15:19:29 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 656)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:19:56 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"0"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (0.9ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 422 Unprocessable Entity in 12ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 7001)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:20:02 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.0ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (0.8ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Create (3.0ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 10], ["price", 50.0], ["created_at", "2023-11-28 09:50:02.437417"], ["updated_at", "2023-11-28 09:50:02.437417"]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mOrder Update (0.1ms)[0m  [1m[33mUPDATE "orders" SET "total_price" = ?, "updated_at" = ? WHERE "orders"."id" = ?[0m  [["total_price", 500.0], ["updated_at", "2023-11-28 09:50:02.443272"], ["id", 1]]
+  ↳ app/models/order.rb:10:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 201 Created in 14ms (Views: 0.2ms | ActiveRecord: 4.1ms | Allocations: 4911)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:20:11 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 676)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:20:46 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010e053340>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms | Allocations: 801)
+
+
+  
+NoMethodError (undefined method `length' for #<LineItem id: 4, order_id: 1, product_id: 1, quantity: 10, price: 50.0, created_at: "2023-11-28 09:50:02.437417000 +0000", updated_at: "2023-11-28 09:50:02.437417000 +0000">):
+  
+app/controllers/orders_controller.rb:66:in `destroy'
+Started GET "/orders/1" for ::1 at 2023-11-28 15:21:01 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 579)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:21:04 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 576)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:21:28 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010e05da20>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.6ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 2.6ms | Allocations: 5773)
+
+
+  
+NoMethodError (undefined method `length' for #<LineItem id: 4, order_id: 1, product_id: 1, quantity: 10, price: 50.0, created_at: "2023-11-28 09:50:02.437417000 +0000", updated_at: "2023-11-28 09:50:02.437417000 +0000">):
+  
+app/controllers/orders_controller.rb:66:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:22:01 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010eb7e8a0>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 3.6ms | Allocations: 5822)
+
+
+  
+NoMethodError (undefined method `length' for #<LineItem id: 4, order_id: 1, product_id: 1, quantity: 10, price: 50.0, created_at: "2023-11-28 09:50:02.437417000 +0000", updated_at: "2023-11-28 09:50:02.437417000 +0000">):
+  
+app/controllers/orders_controller.rb:66:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:22:15 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010de14570>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.6ms | Allocations: 5773)
+
+
+  
+NoMethodError (undefined method `length' for #<LineItem id: 4, order_id: 1, product_id: 1, quantity: 10, price: 50.0, created_at: "2023-11-28 09:50:02.437417000 +0000", updated_at: "2023-11-28 09:50:02.437417000 +0000">):
+  
+app/controllers/orders_controller.rb:66:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:22:22 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec16d80>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.3ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec16d80>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+Completed 500 Internal Server Error in 130266ms (ActiveRecord: 2.6ms | Allocations: 167054)
+
+
+  
+NoMethodError (undefined method `length' for #<LineItem id: 4, order_id: 1, product_id: 1, quantity: 10, price: 50.0, created_at: "2023-11-28 09:50:02.437417000 +0000", updated_at: "2023-11-28 09:50:02.437417000 +0000">):
+  
+app/controllers/orders_controller.rb:67:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:24:37 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec3d340>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 19099ms (ActiveRecord: 2.7ms | Allocations: 137507)
+
+
+  
+NoMethodError (undefined method `length' for #<LineItem id: 4, order_id: 1, product_id: 1, quantity: 10, price: 50.0, created_at: "2023-11-28 09:50:02.437417000 +0000", updated_at: "2023-11-28 09:50:02.437417000 +0000">):
+  
+app/controllers/orders_controller.rb:67:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:26:17 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010e9179e0>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Destroy (1.1ms)[0m  [1m[31mDELETE FROM "line_items" WHERE "line_items"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:13:in `update_order_total_price'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/models/order.rb:9:in `calculate_total_price'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 3.7ms | Allocations: 12504)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 2)):
+  
+app/controllers/orders_controller.rb:4:in `response_in_json'
+app/controllers/orders_controller.rb:67:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:39:06 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ddfae68>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (1.8ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 2.7ms | Allocations: 2586)
+
+
+  
+NoMethodError (undefined method `length' for nil:NilClass):
+  
+app/controllers/orders_controller.rb:66:in `destroy'
+Started GET "/orders/1" for ::1 at 2023-11-28 15:43:51 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 404 Not Found in 14ms (Views: 0.5ms | ActiveRecord: 3.2ms | Allocations: 2699)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 15:43:55 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 15ms (Views: 6.7ms | ActiveRecord: 0.8ms | Allocations: 4525)
+
+
+Started POST "/orders" for ::1 at 2023-11-28 15:44:09 +0530
+Processing by OrdersController#create as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:26:in `create'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Load (1.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mLineItem Create (0.7ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "product_id", "quantity", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["order_id", 1], ["product_id", 1], ["quantity", 10], ["price", 50.0], ["created_at", "2023-11-28 10:14:09.491638"], ["updated_at", "2023-11-28 10:14:09.491638"]]
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/orders_controller.rb:45:in `create'
+Completed 201 Created in 21ms (Views: 0.3ms | ActiveRecord: 2.4ms | Allocations: 7937)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:44:17 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 605)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:44:51 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (2.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."order_id" = ? AND "orders"."user_id" = ? LIMIT ?[0m  [["order_id", "1"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 2.5ms | Allocations: 782)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: orders.order_id):
+  
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:45:34 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010de1c090>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.5ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 3.5ms | Allocations: 10067)
+
+
+  
+NoMethodError (undefined method `length' for #<Order id: 1, user_id: 4, status: "cart", total_price: 500.0, created_at: "2023-11-28 05:47:40.027950000 +0000", updated_at: "2023-11-28 09:50:02.443272000 +0000">):
+  
+app/controllers/orders_controller.rb:67:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:46:02 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec16e20>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."product_id" = ? AND "line_items"."order_id" = ? LIMIT ?[0m  [["product_id", 1], ["order_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 2.1ms | Allocations: 10876)
+
+
+  
+NoMethodError (undefined method `to_i' for {:status=>:bad_request}:Hash):
+  
+app/controllers/orders_controller.rb:5:in `response_in_json'
+app/controllers/orders_controller.rb:70:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:47:42 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ebfa478>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 3.7ms | Allocations: 11020)
+
+
+  
+NoMethodError (undefined method `to_i' for {:status=>:bad_request}:Hash):
+  
+app/controllers/orders_controller.rb:5:in `response_in_json'
+app/controllers/orders_controller.rb:70:in `destroy'
+Started GET "/orders" for ::1 at 2023-11-28 15:47:47 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 742)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:47:50 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 702)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:49:00 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec38a20>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 3.2ms | Allocations: 11020)
+
+
+  
+NoMethodError (undefined method `to_i' for {:status=>:bad_request}:Hash):
+  
+app/controllers/orders_controller.rb:5:in `response_in_json'
+app/controllers/orders_controller.rb:70:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:49:11 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010eb77b40>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 2.1ms | Allocations: 11020)
+
+
+  
+NoMethodError (undefined method `to_i' for {:status=>:internal_server_error}:Hash):
+  
+app/controllers/orders_controller.rb:5:in `response_in_json'
+app/controllers/orders_controller.rb:70:in `destroy'
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:49:25 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ec36720>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 19ms (Views: 0.1ms | ActiveRecord: 2.2ms | Allocations: 10897)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:49:33 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010e91c760>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1745)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:50:12 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010df90700>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 26ms (Views: 0.1ms | ActiveRecord: 3.9ms | Allocations: 10915)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:50:47 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010ebf1cd8>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 19ms (Views: 0.1ms | ActiveRecord: 2.1ms | Allocations: 10858)
+
+
+Started DELETE "/orders/1" for ::1 at 2023-11-28 15:51:34 +0530
+Processing by OrdersController#destroy as */*
+  Parameters: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "id"=>"1"}
+  [1m[36mOrder Load (1.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = ? AND "orders"."user_id" = ? AND "orders"."status" = ? LIMIT ?[0m  [["id", 1], ["user_id", 4], ["status", "cart"], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:65:in `destroy'
+[31mUnpermitted parameter: :id. Context: { controller: OrdersController, action: destroy, request: #<ActionDispatch::Request:0x000000010e8d2db8>, params: {"product_id"=>"1", "quantity"=>"10", "price"=>"50", "controller"=>"orders", "action"=>"destroy", "id"=>"1"} }[0m
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ? AND "line_items"."product_id" = ? LIMIT ?[0m  [["order_id", 1], ["product_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:66:in `destroy'
+  [1m[36mLineItem Load (0.2ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:67:in `destroy'
+Completed 500 Internal Server Error in 61ms (Views: 5.1ms | ActiveRecord: 1.8ms | Allocations: 1745)
+
+
+Started GET "/orders/1" for ::1 at 2023-11-28 15:51:42 +0530
+Processing by OrdersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = ?[0m  [["order_id", 1]]
+  ↳ app/controllers/orders_controller.rb:17:in `show'
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 703)
+
+
+Started GET "/orders" for ::1 at 2023-11-28 15:51:46 +0530
+Processing by OrdersController#index as */*
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  ↳ app/controllers/orders_controller.rb:5:in `response_in_json'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.3ms | Allocations: 725)
+
+
