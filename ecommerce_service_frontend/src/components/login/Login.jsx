@@ -36,7 +36,7 @@ const Login = () => {
       if (response) {
         console.log(response.data);
         alert(response.data.message);
-        navigate("/products");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);

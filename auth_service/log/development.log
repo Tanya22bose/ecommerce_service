@@ -1,0 +1,940 @@
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-11-22 07:07:33.357351', '2023-11-22 07:07:33.357356') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20231122070713)
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (25.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231122070713') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/authentications/register" for ::1 at 2023-11-22 14:24:53 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/authentications/register"):
+  
+Started POST "/authentication/register" for ::1 at 2023-11-22 14:26:20 +0530
+  
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  
+config/routes.rb:2:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started POST "/authentication/register" for ::1 at 2023-11-22 14:26:37 +0530
+  
+Zeitwerk::NameError (expected file /Users/tanya/Work/ecommerce_service/auth_service/app/controllers/authentication_controller.rb to define constant AuthenticationController, but didn't):
+  
+zeitwerk (2.6.12) lib/zeitwerk/loader/callbacks.rb:33:in `on_file_autoloaded'
+zeitwerk (2.6.12) lib/zeitwerk/kernel.rb:31:in `require'
+activesupport (7.1.2) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (7.1.2) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (7.1.2) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.1.2) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.1.2) lib/action_dispatch/request/utils.rb:100:in `action_encoding_template'
+actionpack (7.1.2) lib/action_dispatch/request/utils.rb:85:in `encode'
+actionpack (7.1.2) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.1.2) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.8) lib/rack/etag.rb:29:in `call'
+rack (3.0.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.0.8) lib/rack/head.rb:15:in `call'
+activerecord (7.1.2) lib/active_record/migration.rb:654:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.2) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started POST "/authentication/register" for ::1 at 2023-11-22 14:27:49 +0530
+  
+TypeError (superclass mismatch for class AuthenticationsController):
+  
+app/controllers/authentication_controller.rb:1:in `<main>'
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:27:53 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/authentications/register"):
+  
+Started POST "/authentication/register" for ::1 at 2023-11-22 14:28:01 +0530
+  
+TypeError (superclass mismatch for class AuthenticationsController):
+  
+app/controllers/authentication_controller.rb:1:in `<main>'
+Started POST "/authentication/register" for ::1 at 2023-11-22 14:29:47 +0530
+  
+LoadError (cannot load such file -- /Users/tanya/Work/ecommerce_service/auth_service/app/controllers/authentication_controller.rb):
+  
+<internal:/Users/tanya/.rbenv/versions/3.2.2/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:37:in `require'
+<internal:/Users/tanya/.rbenv/versions/3.2.2/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:37:in `require'
+bootsnap (1.17.0) lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:32:in `require'
+zeitwerk (2.6.12) lib/zeitwerk/kernel.rb:30:in `require'
+activesupport (7.1.2) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (7.1.2) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (7.1.2) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.1.2) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.1.2) lib/action_dispatch/request/utils.rb:100:in `action_encoding_template'
+actionpack (7.1.2) lib/action_dispatch/request/utils.rb:85:in `encode'
+actionpack (7.1.2) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.1.2) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.8) lib/rack/etag.rb:29:in `call'
+rack (3.0.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.0.8) lib/rack/head.rb:15:in `call'
+activerecord (7.1.2) lib/active_record/migration.rb:654:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.2) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started POST "/authentication/register" for ::1 at 2023-11-22 14:30:14 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/authentication/register"):
+  
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:34:58 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/authentications/register"):
+  
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:35:11 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001061d37b8>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 366ms (ActiveRecord: 6.0ms | Allocations: 19379)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:35:56 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001062b5780>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 243ms (ActiveRecord: 1.7ms | Allocations: 4785)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:36:10 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001052cbf40>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 222ms (ActiveRecord: 0.0ms | Allocations: 325)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:40:59 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000105af7a98>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 224ms (ActiveRecord: 0.0ms | Allocations: 322)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-11-22 09:12:40.860256', '2023-11-22 09:12:40.860259') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20231122070713)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231122070713') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:43:00 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001063fcc60>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 242ms (ActiveRecord: 0.0ms | Allocations: 4122)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:43:36 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000105c585e0>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 218ms (ActiveRecord: 0.0ms | Allocations: 325)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:46:32 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000105600508>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 223ms (ActiveRecord: 0.0ms | Allocations: 316)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:46:38 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000105afe898>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 500 Internal Server Error in 220ms (ActiveRecord: 0.0ms | Allocations: 316)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User id: nil, email: "example@example.com", password: nil, created_at: nil, updated_at: nil>):
+  
+app/controllers/authentication_controller.rb:3:in `register'
+Started POST "/authentications/register" for ::1 at 2023-11-22 14:47:12 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001063df0c0>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "example@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "example@example.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-22 09:17:12.816293"], ["updated_at", "2023-11-22 09:17:12.816293"]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 201 Created in 287ms (Views: 1.4ms | ActiveRecord: 7.8ms | Allocations: 10901)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 16:01:09 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001062b8d40>, params: {"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"example@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (7.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "example@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 331ms (Views: 0.2ms | ActiveRecord: 8.8ms | Allocations: 3936)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 16:57:29 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001058174e0>, params: {"email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (19.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 275ms (Views: 1.5ms | ActiveRecord: 22.8ms | Allocations: 2904)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 16:59:01 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001063d34a0>, params: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 7ms (Views: 0.1ms | ActiveRecord: 2.4ms | Allocations: 2218)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 17:06:16 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanya", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000106038ac0>, params: {"email"=>"tanya", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (20.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 152ms (Views: 0.1ms | ActiveRecord: 25.0ms | Allocations: 6940)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 17:07:39 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x000000010544fb50>, params: {"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "tanya@gmail"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-22 11:37:39.365487"], ["updated_at", "2023-11-22 11:37:39.365487"]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 201 Created in 239ms (Views: 0.3ms | ActiveRecord: 2.5ms | Allocations: 2565)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 17:12:21 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x000000010647d040>, params: {"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 250ms (Views: 0.1ms | ActiveRecord: 3.9ms | Allocations: 7262)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 17:12:29 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanya@gmail.", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001063b4f78>, params: {"email"=>"tanya@gmail.", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail.", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail."], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 241ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 2237)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-22 17:12:39 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanya@gail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001062d0f08>, params: {"email"=>"tanya@gail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gail"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 228ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 2234)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-23 10:42:04 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000106179920>, params: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Exists? (13.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "tanyabose56@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-23 05:12:05.315119"], ["updated_at", "2023-11-23 05:12:05.315119"]]
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentication_controller.rb:4:in `register'
+Completed 201 Created in 282ms (Views: 0.7ms | ActiveRecord: 20.0ms | Allocations: 6828)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:42:25 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 32)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:42:37 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 18)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:42:47 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 18)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:45:16 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 18)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:49:23 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 18)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:51:12 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 18)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:56:39 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: login, request: #<ActionDispatch::Request:0x0000000104d96ea8>, params: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"login", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:14:in `login'
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: login, request: #<ActionDispatch::Request:0x0000000104d96ea8>, params: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"login", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+Completed 201 Created in 264ms (Views: 0.5ms | ActiveRecord: 2.4ms | Allocations: 19744)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:57:43 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 162)
+
+
+  
+NameError (undefined local variable or method `user' for #<AuthenticationsController:0x0000000000bc48>):
+  
+app/controllers/authentications_controller.rb:15:in `login'
+Started POST "/authentications/login" for ::1 at 2023-11-23 10:59:50 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:14:in `login'
+Completed 201 Created in 273ms (Views: 0.5ms | ActiveRecord: 2.5ms | Allocations: 19419)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 11:26:11 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 265ms (Views: 0.5ms | ActiveRecord: 2.7ms | Allocations: 19415)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-23 11:38:56 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mUser Load (27.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 401 Unauthorized in 271ms (Views: 0.5ms | ActiveRecord: 53.2ms | Allocations: 3978)
+
+
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Delete All (1.1ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/authentications/login" for ::1 at 2023-11-23 11:44:36 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 2.7ms | Allocations: 761)
+
+
+  
+NoMethodError (undefined method `errors' for nil:NilClass):
+  
+app/controllers/authentications_controller.rb:18:in `login'
+Started POST "/authentications/login" for ::1 at 2023-11-23 11:45:07 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms | Allocations: 461)
+
+
+  
+NoMethodError (undefined method `errors' for nil:NilClass):
+  
+app/controllers/authentications_controller.rb:18:in `login'
+Started POST "/authentications/login" for ::1 at 2023-11-23 11:48:11 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyabose56@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyabose56@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 401 Unauthorized in 7ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 2191)
+
+
+Started GET "/register" for ::1 at 2023-11-27 10:52:44 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/register"):
+  
+Started POST "/register" for ::1 at 2023-11-27 10:53:15 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/register"):
+  
+Started POST "/register" for ::1 at 2023-11-27 10:53:17 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/register"):
+  
+Started POST "/register" for ::1 at 2023-11-27 10:54:21 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/register"):
+  
+Started POST "/register" for ::1 at 2023-11-27 10:54:31 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/register"):
+  
+Started POST "/authentications/register" for ::1 at 2023-11-27 10:55:28 +0530
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x000000010ef76188>, params: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "tanya@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-27 05:25:28.877407"], ["updated_at", "2023-11-27 05:25:28.877407"]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 201 Created in 276ms (Views: 0.3ms | ActiveRecord: 6.6ms | Allocations: 21999)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-27 12:24:44 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 275ms (Views: 0.5ms | ActiveRecord: 3.2ms | Allocations: 19463)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-27 16:47:35 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 296ms (Views: 0.5ms | ActiveRecord: 3.6ms | Allocations: 19462)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:16:49 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001105ee7f8>, params: {"password"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 678ms (Views: 0.3ms | ActiveRecord: 3.8ms | Allocations: 302256)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:17:48 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x000000011092b060>, params: {"password"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 270ms (Views: 0.2ms | ActiveRecord: 2.0ms | Allocations: 2519)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:18:02 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x000000010fa188e8>, params: {"password"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 17ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 3185)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:19:16 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"password"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 401 Unauthorized in 29ms (Views: 5.8ms | ActiveRecord: 1.2ms | Allocations: 700)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:19:38 +0530
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 234ms (Views: 2.9ms | ActiveRecord: 0.2ms | Allocations: 1116)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:22:22 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"password"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 401 Unauthorized in 9ms (Views: 0.7ms | ActiveRecord: 0.8ms | Allocations: 556)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:24:52 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 229ms (Views: 1.7ms | ActiveRecord: 0.4ms | Allocations: 568)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:32:42 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001125fe070>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (14.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 283ms (Views: 0.9ms | ActiveRecord: 18.4ms | Allocations: 2778)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:34:10 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001126fbb80>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 232ms (Views: 0.1ms | ActiveRecord: 2.6ms | Allocations: 2513)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:34:31 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001127ba288>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 226ms (Views: 0.1ms | ActiveRecord: 2.4ms | Allocations: 2513)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:34:43 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001128b8ae0>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 223ms (Views: 1.1ms | ActiveRecord: 2.3ms | Allocations: 2514)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:34:54 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000110920980>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 231ms (Views: 6.4ms | ActiveRecord: 1.5ms | Allocations: 2515)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:35:10 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001123d2940>, params: {"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "xyz@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Create (3.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "xyz@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-29 07:05:10.988162"], ["updated_at", "2023-11-29 07:05:10.988162"]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 201 Created in 232ms (Views: 0.3ms | ActiveRecord: 6.0ms | Allocations: 2813)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:35:15 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x0000000112590f20>, params: {"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "xyz@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 221ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 2287)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:35:42 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"xyzg@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"xyzg@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001127b0288>, params: {"email"=>"xyzg@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"xyzg@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (3.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "xyzg@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "xyzg@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-29 07:05:43.012906"], ["updated_at", "2023-11-29 07:05:43.012906"]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 201 Created in 225ms (Views: 0.8ms | ActiveRecord: 4.8ms | Allocations: 2486)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:38:58 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001128be1c0>, params: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 234ms (Views: 1.0ms | ActiveRecord: 4.8ms | Allocations: 2236)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:39:03 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001126dd220>, params: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 226ms (Views: 0.1ms | ActiveRecord: 1.2ms | Allocations: 2675)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:39:15 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"tanyab@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanyab@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001124bba50>, params: {"email"=>"tanyab@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanyab@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanyab@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "tanyab@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-29 07:09:16.144383"], ["updated_at", "2023-11-29 07:09:16.144383"]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 201 Created in 225ms (Views: 0.4ms | ActiveRecord: 4.8ms | Allocations: 2490)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:39:32 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"password"=>"[FILTERED]", "authentication"=>{"password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 401 Unauthorized in 4ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 580)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:39:56 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 240ms (Views: 1.8ms | ActiveRecord: 0.7ms | Allocations: 590)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:40:13 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 214ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 566)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:40:48 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 217ms (Views: 1.2ms | ActiveRecord: 0.6ms | Allocations: 566)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:41:22 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 223ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 570)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:51:31 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001123bfca0>, params: {"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"xyz@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (6.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "xyz@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 236ms (Views: 0.7ms | ActiveRecord: 8.4ms | Allocations: 2483)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:51:38 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x000000011255e430>, params: {"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "xyz1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["email", "xyz1@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-11-29 07:21:38.320761"], ["updated_at", "2023-11-29 07:21:38.320761"]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 201 Created in 234ms (Views: 0.4ms | ActiveRecord: 2.1ms | Allocations: 2486)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:52:01 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "xyz1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 217ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 589)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:52:09 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"xyz1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "xyz1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 401 Unauthorized in 218ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 457)
+
+
+Started POST "/authentications/register" for ::1 at 2023-11-29 12:52:33 +0530
+Processing by AuthenticationsController#register as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :authentication. Context: { controller: AuthenticationsController, action: register, request: #<ActionDispatch::Request:0x00000001126f64a0>, params: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"authentications", "action"=>"register", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/authentications_controller.rb:4:in `register'
+Completed 422 Unprocessable Entity in 226ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 2607)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:58:34 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 251ms (Views: 2.7ms | ActiveRecord: 7.6ms | Allocations: 836)
+
+
+Started POST "/authentications/login" for ::1 at 2023-11-29 12:59:29 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 225ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 565)
+
+
+Started GET "/products" for ::1 at 2023-11-29 14:06:11 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/products"):
+  
+Started POST "/authentications/login" for ::1 at 2023-11-30 10:48:12 +0530
+Processing by AuthenticationsController#login as HTML
+  Parameters: {"email"=>"tanya@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"tanya@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (45.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "tanya@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/authentications_controller.rb:13:in `login'
+Completed 200 OK in 465ms (Views: 38.0ms | ActiveRecord: 73.0ms | Allocations: 842)
+
+
