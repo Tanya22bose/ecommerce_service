@@ -1,0 +1,24 @@
+    .form-container {
+    width: 400px;
+    background-color: white;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .register-heading {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    padding: 15px;
+    color: white;
+    font-size: larger;
+    text-align: center;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 15px;
+  }
